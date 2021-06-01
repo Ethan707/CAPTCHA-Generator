@@ -12,43 +12,44 @@ public class Generator {
         DefaultKaptcha dk = new DefaultKaptcha();
         Properties properties = new Properties();
 
-        // Image borders
+        // 图片边框
         properties.setProperty("kaptcha.border", "no");
-        // Border color
+        // 边框颜色
         properties.setProperty("kaptcha.border.color", "105,179,90");
-        // Font color
+        // 字体颜色
         properties.setProperty("kaptcha.textproducer.font.color", "black");
-        // Image width
+        // 图片宽
         properties.setProperty("kaptcha.image.width", "200");
-        // Image height
+        // 图片高
         properties.setProperty("kaptcha.image.height", "50");
-        // Font size
+        // 字体大小
         properties.setProperty("kaptcha.textproducer.font.size", "40");
         // session key
         properties.setProperty("kaptcha.session.key", "code");
-        // Captcha length
+        // 验证码长度
         properties.setProperty("kaptcha.textproducer.char.length", "6");
-        // Font
+        // 字体
         properties.setProperty("kaptcha.textproducer.font.names", "宋体,楷体,微软雅黑");
-        // Add fisheye effect
-        properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.FishEyeGimpy");
-        // Add water ripple effect
+        //加鱼眼效果
+//        properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.FishEyeGimpy");
+        //加水纹效果
         properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.WaterRipple");
-        // Add shadow gimpy effect
+        //加阴影效果
         properties.setProperty("kaptcha.obscurificator.impl","com.google.code.kaptcha.impl.ShadowGimpy");
-        // config
+        //配置
         Config config = new Config(properties);
-        //Put the configuration information into the DefaultKaptcha
+        //将配置信息放入DefaultKaptcha
         dk.setConfig(config);
 
         for (int i = 0;i < 10000;i++){
-            // Create the text in the captcha
+            //创建验证码中的文字
             String text = dk.createText();
-            // Create a captcha based on the text
+            //根据文字创建一张验证码
             BufferedImage image = dk.createImage(text);
-            // Convert BufferedImage into image and customize the captcha name
-            // default: "{content}_{index}.jpg"
-            ImageIO.write(image,"jpg",new File("E:\\Task\\Data\\"+text+"_"+i+".jpg"));
+            //将BufferedImage转为图片
+            ImageIO.write(image,"jpg",new File("D:\\Task\\1\\"+text+"_"+i+".jpg"));
+            System.out.println(i);
         }
+
     }
 }
